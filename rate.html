@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>生日相同概率统计</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+        <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var data = {};
+                var days = 365;
+                function total_rate(num) {
+                    var count_rate = 0;
+                    while (num > 0) {
+                        count_rate += (num - 1) / (days);
+                        num--;
+                    }
+                    return count_rate;
+                }
+                for (var i = 1; i < days; i++) {
+                    var rate = total_rate(i) * 100;
+                    var li_html = '<li>';
+                    li_html += '<span class="index">' + i + '</span>';
+                    li_html += '<span class="rate">' + rate + '%' + '</span>';
+                    li_html += '</li>';
+                    $("#show").append(li_html)
+                    data[i] = rate;
+                    console.log(i, ":", rate + "%");
+                }
+                //console.log(data);
+            });
+        </script>
+        <style>
+            ul{
+                list-style: none;
+                -webkit-padding-start: 0px;
+            }
+            ul li{
+                border: solid #c8c8c8 1px;
+                border-radius: 5px;
+                margin-top: 0.5rem;
+            }
+            ul li span{
+                margin-left:10%;
+            }
+            li span.index{
+                color: #454643;
+            }
+            li span.rate{
+                color: #454643;
+            }
+        </style>
+    </head>
+    <body> 
+        <h3 style="text-align:center;">生日相同概率统计</h3>
+        <ul id="show">
+        </ul>
+    </body>
+</html>
